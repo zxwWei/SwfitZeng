@@ -13,6 +13,32 @@
 import Foundation
 import AFNetworking
 
+// MARK: - 网络枚举错误
+enum XWNetWorkError: Int {
+    case emptyToken = -1
+    case emptyUid = -2
+    
+    // 枚举里面可以有属性
+    var description: String {
+        get {
+            // 根据枚举的类型返回对应的错误
+            switch self {
+            case XWNetWorkError.emptyToken:
+                return "accecc token 为空"
+            case XWNetWorkError.emptyUid:
+                return "uid 为空"
+            }
+        }
+    }
+    
+    // 枚举可以定义方法
+    func error() -> NSError {
+        return NSError(domain: "cn.itcast.error.network", code: rawValue, userInfo: ["errorDescription" : description])
+    }
+    
+}
+
+
 //class XWNetworkTool: AFHTTPSessionManager {
 class XWNetworkTool: NSObject {
     
@@ -60,6 +86,18 @@ class XWNetworkTool: NSObject {
         return NSURL(string: urlString)!
     }
     
+    // MARK: - /// 判断access token是否有值,没有值返回nil,如果有值生成一个字典
+    
+    func assTokenDict() -> [String: AnyObject]? {
+        
+        if XWUserAccount.loadAccount()?.access_token == nil {
+            return nil
+        }
+        return ["access_token": XWUserAccount.loadAccount()!.access_token!]
+        
+    }
+    
+    
     // MARK: - 4.加载AssesToken
     func loadAssesToken(code: String , finished: NetWorkFinishedCallBack){
         
@@ -95,12 +133,20 @@ class XWNetworkTool: NSObject {
         
         print("asscess_token:\(XWUserAccount.loadAccount()?.access_token)")
         if XWUserAccount.loadAccount()?.access_token == nil {
-            print("没有acces_token")
+            
+        let error = XWNetWorkError.emptyToken.error()
+            
+            finished(result: nil, error: error)
+            
+            //print("没有acces_token")
             return
         }
         // 判断uid
         if XWUserAccount.loadAccount()?.uid == nil{
-            print("没有uid")
+            //print("没有uid")
+            let error = XWNetWorkError.emptyUid.error()
+            
+            finished(result: nil, error: error)
             return
         }
         
@@ -120,36 +166,45 @@ class XWNetworkTool: NSObject {
     }
     
     ///  visist to blog get the message of blog
-    func getblogInfo(finished:NetWorkFinishedCallBack){
-    
-        let uslStr = "2/statuses/home_timeline.json"
-        
-        let parmeters = [
-            
-            "access_token" : XWUserAccount.loadAccount()!.access_token!
-        ]
-        
-        
-        requestGETGET(uslStr, parameters: parmeters, finished: finished)
-        
-    }
-    
-//         func getblogInfo(finished:NetWorkFinishedCallBack) {
-//        // 获取路径
-//        let path = NSBundle.mainBundle().pathForResource("statuses", ofType: "json")
+//    func getblogInfo(finished:NetWorkFinishedCallBack){
+//    
+//        let uslStr = "2/statuses/home_timeline.json"
 //        
-//        // 加载文件数据
-//        let data = NSData(contentsOfFile: path!)
 //        
-//        // 转成json
-//        do {
-//            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
-//            // 有数据
-//            finished(result: json as? [String : AnyObject], error: nil)
-//        } catch {
-//            print("出异常了")
-//        }
+////        guard  let  parmeters = assTokenDict() else {
+////            
+////            // 没有值的时候进入
+////            finished(result: nil, error: XWNetWorkError.emptyToken.error())
+////            return
+////        }
+//        
+//        
+//        let parmeters = [
+//            
+//            "access_token" : XWUserAccount.loadAccount()!.access_token!
+//        ]
+////
+//        
+//        requestGETGET(uslStr, parameters: parmeters, finished: finished)
+//        
 //    }
+    
+         func getblogInfo(finished:NetWorkFinishedCallBack) {
+        // 获取路径
+        let path = NSBundle.mainBundle().pathForResource("statuses", ofType: "json")
+        
+        // 加载文件数据
+        let data = NSData(contentsOfFile: path!)
+        
+        // 转成json
+        do {
+            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
+            // 有数据
+            finished(result: json as? [String : AnyObject], error: nil)
+        } catch {
+            print("出异常了")
+        }
+    }
     
     
     
