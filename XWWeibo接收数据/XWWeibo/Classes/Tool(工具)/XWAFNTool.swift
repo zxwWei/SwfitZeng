@@ -114,6 +114,7 @@ class XWNetworkTool: NSObject {
         ]
 
         
+        
         // MARK: - 网络请求 让调用者获取信息
         afnManager.POST(urlString, parameters: parameters, success: { (_, result) -> Void in
             

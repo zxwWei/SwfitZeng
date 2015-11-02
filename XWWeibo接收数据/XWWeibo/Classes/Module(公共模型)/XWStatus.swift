@@ -21,7 +21,7 @@ class XWSatus: NSObject {
     /// 微博来源
     var source: String?
     
-    /// 微博的配图   此时是字符串数组  需要将其转换成url数组
+    /// 微博的配图   此时是字典数组  需要将其转换成url数组
     var pic_urls: [[String: AnyObject]]? {
         
         didSet{
@@ -115,8 +115,6 @@ class XWSatus: NSObject {
                 }
                 return
         }
-    
-        
         return super.setValue(value, forKey: key)
     }
     

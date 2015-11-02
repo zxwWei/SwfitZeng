@@ -150,7 +150,7 @@ extension XWOauthVC: UIWebViewDelegate {
                 }
             })
             
-            //print("accountFinished:\(XWUserAccount.loadAccount())")
+            print("accountFinished:\(XWUserAccount.loadAccount())")
             
             // when login succesful, switch to welcomeVC
             ((UIApplication.sharedApplication().delegate) as! AppDelegate).switchRootController(false)
