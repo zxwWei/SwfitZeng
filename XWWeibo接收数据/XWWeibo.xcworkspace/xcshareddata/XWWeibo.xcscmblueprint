@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "43001ED3F2B18DA60FB7AB04FB7D97A1C5A0EE58",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1339D0E8727E75BA3FC44EDBD552E9E18AA21729" : 0,
+    "43001ED3F2B18DA60FB7AB04FB7D97A1C5A0EE58" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "00AB86B5-9ED1-48A3-8764-29AB4406E431",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1339D0E8727E75BA3FC44EDBD552E9E18AA21729" : "SWiftWeiBlog",
+    "43001ED3F2B18DA60FB7AB04FB7D97A1C5A0EE58" : "SwifitBlog\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "XWWeibo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "XWWeibo\/XWWeibo.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:zxwWei\/SWiftWeiBlog.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1339D0E8727E75BA3FC44EDBD552E9E18AA21729"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/zxwWei\/SwifitBlog.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "43001ED3F2B18DA60FB7AB04FB7D97A1C5A0EE58"
+    }
+  ]
+}
