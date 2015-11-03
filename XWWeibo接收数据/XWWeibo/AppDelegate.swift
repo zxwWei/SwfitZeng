@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+// MARK : - git clone https://github.com/December-XP/swiftweibo05.git 下载地址
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

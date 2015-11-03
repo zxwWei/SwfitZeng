@@ -167,46 +167,46 @@ class XWNetworkTool: NSObject {
     }
     
     ///  visist to blog get the message of blog
-//    func getblogInfo(finished:NetWorkFinishedCallBack){
-//    
-//        let uslStr = "2/statuses/home_timeline.json"
-//        
-//        
-////        guard  let  parmeters = assTokenDict() else {
-////            
-////            // 没有值的时候进入
-////            finished(result: nil, error: XWNetWorkError.emptyToken.error())
-////            return
-////        }
-//        
-//        
-//        let parmeters = [
+    func getblogInfo(finished:NetWorkFinishedCallBack){
+    
+        let uslStr = "2/statuses/home_timeline.json"
+        
+        
+//        guard  let  parmeters = assTokenDict() else {
 //            
-//            "access_token" : XWUserAccount.loadAccount()!.access_token!
-//        ]
-////
-//        
-//        requestGETGET(uslStr, parameters: parmeters, finished: finished)
-//        
-//    }
-    
-         func getblogInfo(finished:NetWorkFinishedCallBack) {
-        // 获取路径
-        let path = NSBundle.mainBundle().pathForResource("statuses", ofType: "json")
+//            // 没有值的时候进入
+//            finished(result: nil, error: XWNetWorkError.emptyToken.error())
+//            return
+//        }
         
-        // 加载文件数据
-        let data = NSData(contentsOfFile: path!)
         
-        // 转成json
-        do {
-            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
-            // 有数据
-            finished(result: json as? [String : AnyObject], error: nil)
-        } catch {
-            print("出异常了")
-        }
+        let parmeters = [
+            
+            "access_token" : XWUserAccount.loadAccount()!.access_token!
+        ]
+//
+        
+        requestGETGET(uslStr, parameters: parmeters, finished: finished)
+        
     }
-    
+//
+//         func getblogInfo(finished:NetWorkFinishedCallBack) {
+//        // 获取路径
+//        let path = NSBundle.mainBundle().pathForResource("statuses", ofType: "json")
+//        
+//        // 加载文件数据
+//        let data = NSData(contentsOfFile: path!)
+//        
+//        // 转成json
+//        do {
+//            let json = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions(rawValue: 0))
+//            // 有数据
+//            finished(result: json as? [String : AnyObject], error: nil)
+//        } catch {
+//            print("出异常了")
+//        }
+//    }
+//    
     
     
     // MARK: - 封装 GET

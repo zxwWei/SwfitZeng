@@ -9,6 +9,7 @@
 
 // MARK : - git clone https://github.com/December-XP/swiftweibo05.git 下载地址
 import UIKit
+import SDWebImage
 
 class XWPictureView: UICollectionView {
     
@@ -28,7 +29,7 @@ class XWPictureView: UICollectionView {
     }
     
     
-    // MARK: - 根据微博模型,计算配图的尺寸
+    // MARK: - 根据微博模型,计算配图的尺寸 让cell获得配图的大小
     func collectionViewSize() -> CGSize {
     
         // 设置itemSize
@@ -50,10 +51,23 @@ class XWPictureView: UICollectionView {
             return CGSizeZero
         }
         
-        if count == 1 {
-            let size = CGSizeMake(150, 120)
+        if count == 1 {  // 当时一张图片的时候，有些图片大，有些小，所以要根据图片的本来大小来调节
             
+            // 获取图片url
+            let urlStr = status!.realPictureUrls![0].absoluteString
+            
+            var size = CGSizeMake(150, 120)
+            // 获得图片
+            if  let image = SDWebImageManager.sharedManager().imageCache.imageFromDiskCacheForKey(urlStr) {
+            
+                size = image.size
+            }
             // 让cell和collectionView一样大
+            
+            if (size.width < 40){
+                size.width = 40
+            }
+            
             layout.itemSize = size
             
             return size
@@ -186,8 +200,14 @@ class XWPictureViewCell: UICollectionViewCell{
     }
     
     // MARK: - 懒加载
-    
-    private lazy var picture = UIImageView()
+    /// 其他图片不需要缓存 设置其适配属性
+    private lazy var picture: UIImageView = {
+        let imageView = UIImageView ()
+        
+        imageView.contentMode = UIViewContentMode.ScaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
     
 
     

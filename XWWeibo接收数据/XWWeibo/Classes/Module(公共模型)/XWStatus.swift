@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SDWebImage
+
 class XWSatus: NSObject {
     
     /// 微博创建时间
@@ -55,6 +57,7 @@ class XWSatus: NSObject {
     /// 微博配图 url数组
     var pictureUrlS: [NSURL]?
     
+    
     /// 计算型属性 如果是转发的返回原创微博的图片 ，转发的返回转发的图片
     var realPictureUrls: [NSURL]? {
         
@@ -65,6 +68,7 @@ class XWSatus: NSObject {
         }
     
     }
+    
     
     /// 被转发微博
     var retweeted_status: XWSatus?
@@ -133,7 +137,8 @@ class XWSatus: NSObject {
     }
     
     
-    // MARK: -load the blog status  [XWSatus]: the array of model
+    // MARK: -  加载微博信息
+    
     class func loadTheBlogifnos(finished:(statuses: [XWSatus]? , error: NSError?)->()){
     
         // let netWorkTool load the blogStatus
@@ -149,13 +154,16 @@ class XWSatus: NSObject {
             // when status has value , we append it, then give to other  [[String: AnyObject]]  the array of dictionary
             if let array = result?["statuses"] as? [[String: AnyObject]]{
             
-                // craete a model array
+                // 创建微博数组
                 var statues = [XWSatus]()
                 
                 for dict in array {
                     
                     statues.append(XWSatus(dict: dict))
                 }
+                
+                // 将图片缓存下来
+                cacheWedImage(statues, finised: finished)
                 
                 finished(statuses: statues, error: nil)
                 
@@ -165,11 +173,70 @@ class XWSatus: NSObject {
                 finished(statuses: nil, error: nil)
             }
             
-            
         }
-    
     }
     
+    // MARK: TODO: 缓存图片
+    class func cacheWedImage(status: [XWSatus]? , finised:(status: [XWSatus]? , error: NSError?) -> ()){
+    
+        // 定义任务组
+        let group = dispatch_group_create()
+        
+        guard let statusList = status else {
+            
+            return
+        }
+        
+        // 长度
+        var length = 0
+        
+        // 遍历list数组里面的微博，获取到urlss数组
+        for status in statusList{
+        
+            //获得url数组
+            guard let urls = status.realPictureUrls else {
+            
+                // 没有的时候继续遍历list中的status
+                continue
+            }
+            
+            // 根据遍历url数组来缓存图片
+            for url in urls {
+                // 进入任务组
+                dispatch_group_enter(group)
+                
+                // 下载图片
+                SDWebImageManager.sharedManager().downloadImageWithURL(url, options: SDWebImageOptions(rawValue: 0), progress: nil, completed: { (image, error , _ , _ , _ ) -> Void in
+                    // 离开任务组
+                    dispatch_group_leave(group)
+                    
+                    
+                    if (error != nil){
+                        
+                        finised(status: nil, error: error)
+                        return
+                    }
+                    
+                    // 拼接长度
+                    if let data  = UIImagePNGRepresentation(image){
+                    
+                         length += data.length
+                    }
+                    
+                       print("长度:\(length / 1024)")
+                })// 注意这个括号
+            }
+        }
+        // 出任务组
+        dispatch_group_notify( group, dispatch_get_main_queue() ) { () -> Void in
+        
+         
+            finised(status: status, error: nil)
+            
+        }
+        
+        
+    }
     
     
 }
