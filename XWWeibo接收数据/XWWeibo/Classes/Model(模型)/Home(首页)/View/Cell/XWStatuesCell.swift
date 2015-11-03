@@ -118,7 +118,7 @@ class XWStatuesCell: UITableViewCell {
         layoutIfNeeded()
         
         let MaxY = CGRectGetMaxY(bottomView.frame)
-        print("MaxY\(MaxY)")
+        //print("MaxY\(MaxY)")
         return MaxY
     }
     

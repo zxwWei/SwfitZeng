@@ -28,6 +28,8 @@
 		2E1708BE1BE62BDB00752B0C /* statuses.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E1708BD1BE62BDB00752B0C /* statuses.json */; settings = {ASSET_TAGS = (); }; };
 		2E1708C01BE6321000752B0C /* XWBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1708BF1BE6321000752B0C /* XWBottomView.swift */; settings = {ASSET_TAGS = (); }; };
 		2E1708C21BE6323500752B0C /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1708C11BE6323500752B0C /* UIButton+Extension.swift */; settings = {ASSET_TAGS = (); }; };
+		2E8E3E951BE8D26A00843B98 /* XWRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E8E3E941BE8D26A00843B98 /* XWRefreshView.xib */; settings = {ASSET_TAGS = (); }; };
+		2E8E3E971BE8D30700843B98 /* XWRefrshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8E3E961BE8D30700843B98 /* XWRefrshControl.swift */; settings = {ASSET_TAGS = (); }; };
 		2EBA1DA51BE4F777003E1123 /* XWStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA1DA41BE4F777003E1123 /* XWStatus.swift */; settings = {ASSET_TAGS = (); }; };
 		2EBA1DA71BE50193003E1123 /* XWUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA1DA61BE50193003E1123 /* XWUser.swift */; settings = {ASSET_TAGS = (); }; };
 		2EBA1DA91BE504ED003E1123 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA1DA81BE504ED003E1123 /* UIView+AutoLayout.swift */; settings = {ASSET_TAGS = (); }; };
@@ -63,6 +65,8 @@
 		2E1708BD1BE62BDB00752B0C /* statuses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = statuses.json; sourceTree = "<group>"; };
 		2E1708BF1BE6321000752B0C /* XWBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWBottomView.swift; sourceTree = "<group>"; };
 		2E1708C11BE6323500752B0C /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		2E8E3E941BE8D26A00843B98 /* XWRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XWRefreshView.xib; sourceTree = "<group>"; };
+		2E8E3E961BE8D30700843B98 /* XWRefrshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWRefrshControl.swift; sourceTree = "<group>"; };
 		2EBA1DA41BE4F777003E1123 /* XWStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWStatus.swift; sourceTree = "<group>"; };
 		2EBA1DA61BE50193003E1123 /* XWUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWUser.swift; sourceTree = "<group>"; };
 		2EBA1DA81BE504ED003E1123 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
@@ -363,6 +367,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		2E8E3E931BE8D25500843B98 /* RefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				2E8E3E941BE8D26A00843B98 /* XWRefreshView.xib */,
+				2E8E3E961BE8D30700843B98 /* XWRefrshControl.swift */,
+			);
+			path = RefreshControl;
+			sourceTree = "<group>";
+		};
 		2EBA1DAE1BE50674003E1123 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -373,6 +386,7 @@
 		2EBA1DAF1BE50674003E1123 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2E8E3E931BE8D25500843B98 /* RefreshControl */,
 				2EBA1DB01BE50690003E1123 /* Cell */,
 			);
 			path = View;
@@ -471,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18ADCA671BDE0921006D7174 /* Assets.xcassets in Resources */,
+				2E8E3E951BE8D26A00843B98 /* XWRefreshView.xib in Resources */,
 				2E1708BE1BE62BDB00752B0C /* statuses.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -540,6 +555,7 @@
 				1846E9C41BDE4202008B2145 /* XWMainTabBarController.swift in Sources */,
 				2E1708B71BE61F6B00752B0C /* XWNewFeatureVC.swift in Sources */,
 				2E1708C21BE6323500752B0C /* UIButton+Extension.swift in Sources */,
+				2E8E3E971BE8D30700843B98 /* XWRefrshControl.swift in Sources */,
 				1846E9C01BDE3D1C008B2145 /* XWDiscoverTableVC.swift in Sources */,
 				1846E9C21BDE3D2A008B2145 /* XWProfileTableVC.swift in Sources */,
 				1846E9BC1BDE3CE9008B2145 /* XWMessageTableVC.swift in Sources */,

@@ -223,7 +223,7 @@ class XWSatus: NSObject {
                          length += data.length
                     }
                     
-                       print("长度:\(length / 1024)")
+                       //print("长度:\(length / 1024)")
                 })// 注意这个括号
             }
         }

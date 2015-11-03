@@ -17,7 +17,7 @@ class XWPictureView: UICollectionView {
     var status: XWSatus? {
         didSet{
             
-            print(status?.realPictureUrls?.count)
+            //print(status?.realPictureUrls?.count)
             reloadData()
         
         }

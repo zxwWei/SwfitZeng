@@ -9,7 +9,6 @@
 import UIKit
 import SVProgressHUD
 
-
 // MARK: - 统一管理两个cell
 enum XWCellReuseIndentifier: String {
     case ownCell = "ownCell"
@@ -35,6 +34,10 @@ class XWHomeTableVC: XWcompassVc {
         if !XWUserAccount.userLogin() {
             return
         }
+        
+        // MARK: - 本身自带的属性 创建下拉刷新控制器
+        refreshControl = XWRefrshControl()
+        
         
         setupNavigaiotnBar()
         prepareUI()
@@ -63,21 +66,13 @@ class XWHomeTableVC: XWcompassVc {
     // MARK: 准备UI
     private func prepareUI() {
         
-        // 预估行高
-        
-//        tableView.estimatedRowHeight = 300
-//        
-//        tableView.rowHeight = UITableViewAutomaticDimension
-        
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
-//        tableView.rowHeight = 500
         
         // talbeView注册cell  XWOwnBlog  XWForwardBlog
         tableView.registerClass(XWOwnBlog.self, forCellReuseIdentifier: XWCellReuseIndentifier.ownCell.rawValue)
         tableView.registerClass(XWForwardBlog.self, forCellReuseIdentifier: XWCellReuseIndentifier.forWardCell.rawValue)
     
     }
-    
     
 
      // MARK: - setupNavigaiotnBar
@@ -112,9 +107,6 @@ class XWHomeTableVC: XWcompassVc {
         // 将status传给cell
         cell.statues = status
         
-        //statues is array
-//       cell.textLabel?.text = statues?[indexPath.row].text
-        
         return cell
     }
 
@@ -144,6 +136,7 @@ class XWHomeTableVC: XWcompassVc {
          //print("rowHeight\(rowHeight)")
         return rowHeight
     }
+    
     
     
 

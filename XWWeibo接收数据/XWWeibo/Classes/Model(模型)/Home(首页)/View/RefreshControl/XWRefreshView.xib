@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="XWRefreshView" customModule="XWWeibo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="tableview_loading" translatesAutoresizingMaskIntoConstraints="NO" id="sfG-6h-KCr">
+                    <rect key="frame" x="16" y="13" width="32" height="33"/>
+                    <animations/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在加载数据" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8py-rt-BDn">
+                    <rect key="frame" x="66" y="19" width="78" height="21"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XvU-ck-dgB" userLabel="tipView">
+                    <rect key="frame" x="0.0" y="0.0" width="160" height="60"/>
+                    <subviews>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="tableview_pull_refresh" translatesAutoresizingMaskIntoConstraints="NO" id="Ub8-io-BDG">
+                            <rect key="frame" x="16" y="13" width="32" height="33"/>
+                            <animations/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="正在加载数据" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTd-4A-Noy">
+                            <rect key="frame" x="66" y="19" width="78" height="23"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="wTd-4A-Noy" firstAttribute="top" secondItem="XvU-ck-dgB" secondAttribute="top" constant="19" id="6YT-XM-2gj"/>
+                        <constraint firstAttribute="trailing" secondItem="wTd-4A-Noy" secondAttribute="trailing" constant="16" id="JmW-mA-6YO"/>
+                        <constraint firstItem="Ub8-io-BDG" firstAttribute="leading" secondItem="XvU-ck-dgB" secondAttribute="leading" constant="16" id="hjG-6h-mzO"/>
+                        <constraint firstItem="wTd-4A-Noy" firstAttribute="centerY" secondItem="XvU-ck-dgB" secondAttribute="centerY" id="uRC-oP-euo"/>
+                        <constraint firstItem="Ub8-io-BDG" firstAttribute="top" secondItem="XvU-ck-dgB" secondAttribute="top" constant="13" id="vN1-5f-iX1"/>
+                        <constraint firstItem="Ub8-io-BDG" firstAttribute="centerY" secondItem="XvU-ck-dgB" secondAttribute="centerY" id="zOZ-Or-IMp"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="sfG-6h-KCr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="1dF-fC-nWq"/>
+                <constraint firstAttribute="trailing" secondItem="XvU-ck-dgB" secondAttribute="trailing" id="59D-pr-agJ"/>
+                <constraint firstItem="sfG-6h-KCr" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="13" id="RXV-Fj-zCb"/>
+                <constraint firstAttribute="bottom" secondItem="XvU-ck-dgB" secondAttribute="bottom" id="VCb-Ph-w28"/>
+                <constraint firstItem="XvU-ck-dgB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="iuO-CI-kQb"/>
+                <constraint firstAttribute="trailing" secondItem="8py-rt-BDn" secondAttribute="trailing" constant="16" id="mCi-6v-17v"/>
+                <constraint firstItem="8py-rt-BDn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="19" id="tlS-3s-mRI"/>
+                <constraint firstItem="8py-rt-BDn" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="wnq-uN-ZCH"/>
+                <constraint firstItem="sfG-6h-KCr" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ydi-l4-rc2"/>
+                <constraint firstItem="XvU-ck-dgB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="z5t-AO-1XH"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="loadingView" destination="sfG-6h-KCr" id="Ici-r9-yXm"/>
+                <outlet property="tipView" destination="XvU-ck-dgB" id="boE-zz-ati"/>
+                <outlet property="tipViewIcon" destination="Ub8-io-BDG" id="OQG-PY-9im"/>
+            </connections>
+            <point key="canvasLocation" x="674" y="375"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="tableview_loading" width="32" height="32"/>
+        <image name="tableview_pull_refresh" width="32" height="32"/>
+    </resources>
+</document>
