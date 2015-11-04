@@ -11,11 +11,18 @@ import SDWebImage
 
 class XWSatus: NSObject {
     
+//    修改 Status 模型的 loadStatus方法,添加 since_id 和 max_id 参数
+    
+//    ///加载大于since_id大的微博
+//    var since_id: Int?
+//    
+//    /// 加载小于或等于max_id的微博
+//    var max_id: Int?
     /// 微博创建时间
     var created_at: String?
     
     /// 字符串型的微博ID
-    var idstr: String?
+    var id: Int = 0
     
     /// 微博信息内容
     var text: String?
@@ -130,24 +137,26 @@ class XWSatus: NSObject {
     override var description: String {
         //        "access_token:\(access_token), expires_in:\(expires_in), uid:\(uid): expires_date:\(expires_date), name:\(name), avatar_large:\(avatar_large)"
         
-        let p = ["created_at", "idstr", "text", "source", "pic_urls", "user"]
+        let p = ["created_at", "idStr", "text", "source", "pic_urls", "user"]
         // 数组里面的每个元素,找到对应的value,拼接成字典
-        // \n 换行, \t table
+        // \n 换行, \t table  since_id
         return "\n\t微博模型:\(dictionaryWithValuesForKeys(p))"
     }
     
     
-    // MARK: -  加载微博信息
+    // MARK: -  加载微博信息 模型从网络处加载数据 该方法让控制器调用
     
-    class func loadTheBlogifnos(finished:(statuses: [XWSatus]? , error: NSError?)->()){
+    class func loadTheBlogifnos(since_id: Int ,max_id: Int ,finished:(statuses: [XWSatus]? , error: NSError?)->()){
     
         // let netWorkTool load the blogStatus
         
-        XWNetworkTool.shareInstance.getblogInfo { (result, error) -> () in
+        //  从网络工具类处加载数据
+        XWNetworkTool.shareInstance.getblogInfo(since_id , max_id: max_id) { (result, error) -> () in
             
             if (error != nil){
                 
                 finished(statuses: nil, error: error)
+                return
             }
             
             // statuses  result?["statuses"]

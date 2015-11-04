@@ -77,7 +77,7 @@ class XWMainTabBarController: UITabBarController {
         
         button.setBackgroundImage(UIImage(named: "tabbar_compose_button"), forState: UIControlState.Normal)
         button.setBackgroundImage(UIImage(named: "tabbar_compose_button_highlighted"), forState: UIControlState.Highlighted)
-        
+        button.addTarget(self, action: "toComposeVC", forControlEvents: UIControlEvents.TouchUpInside)
         
         button.setImage(UIImage(named: "tabbar_compose_icon_add"), forState: UIControlState.Normal)
         button.setImage(UIImage(named: "tabbar_compose_icon_add_highlighted"), forState: UIControlState.Highlighted)
@@ -85,7 +85,14 @@ class XWMainTabBarController: UITabBarController {
         return button
     }()
     
+    // MARK: - 跳转到发微博界面
+    func toComposeVC(){
+        // 记得带导航控制条
+        presentViewController(  UINavigationController(rootViewController: XWComposeVC()), animated: true, completion: nil)
+    }
+    
 }
+
 
 
 

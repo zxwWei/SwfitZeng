@@ -166,31 +166,41 @@ class XWNetworkTool: NSObject {
         
     }
     
-    ///  visist to blog get the message of blog
-    func getblogInfo(finished:NetWorkFinishedCallBack){
+    ///  发送网络请求的方法
+    func getblogInfo(since_id: Int, max_id: Int,finished: NetWorkFinishedCallBack){
     
         let uslStr = "2/statuses/home_timeline.json"
         
         
-//        guard  let  parmeters = assTokenDict() else {
-//            
-//            // 没有值的时候进入
-//            finished(result: nil, error: XWNetWorkError.emptyToken.error())
-//            return
-//        }
-        
-        
-        let parmeters = [
+        guard  var  parmeters = assTokenDict() else {
             
-            "access_token" : XWUserAccount.loadAccount()!.access_token!
-        ]
+            // 没有值的时候进入
+            finished(result: nil, error: XWNetWorkError.emptyToken.error())
+            return
+        }
+//        - parameter since_id: 加载大于since_id大的微博, 默认为0
+//        - parameter max_id:   加载小于或等于max_id的微博, 默认为0
+//
+            //print(assTokenDict() )
+//        
+//        var parmeters = [
+//            
+//            "access_token" : XWUserAccount.loadAccount()!.access_token!
+//        ]
+        if (since_id > 0){
+            parmeters["since_id"] = since_id
+        }
+        else if (max_id > 0){
+            parmeters["max_id"] = max_id - 1
+        }
+//        parmeters["max_id"] = max_id
 //
         
         requestGETGET(uslStr, parameters: parmeters, finished: finished)
         
     }
 //
-//         func getblogInfo(finished:NetWorkFinishedCallBack) {
+//         func getblogInfo(since_id: Int, max_id: Int,finished:NetWorkFinishedCallBack) {
 //        // 获取路径
 //        let path = NSBundle.mainBundle().pathForResource("statuses", ofType: "json")
 //        
@@ -207,7 +217,7 @@ class XWNetworkTool: NSObject {
 //        }
 //    }
 //    
-    
+//
     
     // MARK: - 封装 GET
     func requestGETGET(URLString: String, parameters: AnyObject?, finished: NetWorkFinishedCallBack){

@@ -28,6 +28,8 @@
 		2E1708BE1BE62BDB00752B0C /* statuses.json in Resources */ = {isa = PBXBuildFile; fileRef = 2E1708BD1BE62BDB00752B0C /* statuses.json */; settings = {ASSET_TAGS = (); }; };
 		2E1708C01BE6321000752B0C /* XWBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1708BF1BE6321000752B0C /* XWBottomView.swift */; settings = {ASSET_TAGS = (); }; };
 		2E1708C21BE6323500752B0C /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1708C11BE6323500752B0C /* UIButton+Extension.swift */; settings = {ASSET_TAGS = (); }; };
+		2E2AA0F61BEA147D0014E697 /* XWComposeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2AA0F51BEA147D0014E697 /* XWComposeVC.swift */; settings = {ASSET_TAGS = (); }; };
+		2E2AA0FE1BEA40E80014E697 /* XWPlacerholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2AA0FD1BEA40E80014E697 /* XWPlacerholderTextView.swift */; settings = {ASSET_TAGS = (); }; };
 		2E8E3E951BE8D26A00843B98 /* XWRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E8E3E941BE8D26A00843B98 /* XWRefreshView.xib */; settings = {ASSET_TAGS = (); }; };
 		2E8E3E971BE8D30700843B98 /* XWRefrshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8E3E961BE8D30700843B98 /* XWRefrshControl.swift */; settings = {ASSET_TAGS = (); }; };
 		2EBA1DA51BE4F777003E1123 /* XWStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA1DA41BE4F777003E1123 /* XWStatus.swift */; settings = {ASSET_TAGS = (); }; };
@@ -65,6 +67,8 @@
 		2E1708BD1BE62BDB00752B0C /* statuses.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = statuses.json; sourceTree = "<group>"; };
 		2E1708BF1BE6321000752B0C /* XWBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWBottomView.swift; sourceTree = "<group>"; };
 		2E1708C11BE6323500752B0C /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
+		2E2AA0F51BEA147D0014E697 /* XWComposeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWComposeVC.swift; sourceTree = "<group>"; };
+		2E2AA0FD1BEA40E80014E697 /* XWPlacerholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWPlacerholderTextView.swift; sourceTree = "<group>"; };
 		2E8E3E941BE8D26A00843B98 /* XWRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XWRefreshView.xib; sourceTree = "<group>"; };
 		2E8E3E961BE8D30700843B98 /* XWRefrshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWRefrshControl.swift; sourceTree = "<group>"; };
 		2EBA1DA41BE4F777003E1123 /* XWStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWStatus.swift; sourceTree = "<group>"; };
@@ -107,9 +111,10 @@
 		1846E99F1BDE3AF9008B2145 /* Model(模型) */ = {
 			isa = PBXGroup;
 			children = (
+				1846E9A81BDE3AF9008B2145 /* Main(主要) */,
+				2E2AA0F11BEA14100014E697 /* Compose(发微博) */,
 				2E1708B31BE61F6B00752B0C /* NewFeature(新特性) */,
 				1847A56E1BE0E39C005036E0 /* Oauth(Oauth授权) */,
-				1846E9A81BDE3AF9008B2145 /* Main(主要) */,
 				1846E9A41BDE3AF9008B2145 /* Home(首页) */,
 				1846E9AC1BDE3AF9008B2145 /* Message()消息 */,
 				1846E9A01BDE3AF9008B2145 /* Discover(发现) */,
@@ -367,6 +372,39 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		2E2AA0F11BEA14100014E697 /* Compose(发微博) */ = {
+			isa = PBXGroup;
+			children = (
+				2E2AA0F21BEA14100014E697 /* Controller */,
+				2E2AA0F31BEA14100014E697 /* Model */,
+				2E2AA0F41BEA14100014E697 /* View */,
+			);
+			path = "Compose(发微博)";
+			sourceTree = "<group>";
+		};
+		2E2AA0F21BEA14100014E697 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				2E2AA0F51BEA147D0014E697 /* XWComposeVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2E2AA0F31BEA14100014E697 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		2E2AA0F41BEA14100014E697 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2E2AA0FD1BEA40E80014E697 /* XWPlacerholderTextView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2E8E3E931BE8D25500843B98 /* RefreshControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -566,6 +604,7 @@
 				2EBA1DB21BE5076B003E1123 /* XWStatuesCell.swift in Sources */,
 				1847A5711BE0E3C7005036E0 /* XWOauthVC.swift in Sources */,
 				2E1708BA1BE61FAB00752B0C /* XWPictureView.swift in Sources */,
+				2E2AA0FE1BEA40E80014E697 /* XWPlacerholderTextView.swift in Sources */,
 				2EBA1DA51BE4F777003E1123 /* XWStatus.swift in Sources */,
 				2EBA1DB61BE50E62003E1123 /* UILabel+Extension.swift in Sources */,
 				18898FEA1BE34EB600FCB250 /* UIColor+Extension.swift in Sources */,
@@ -573,6 +612,7 @@
 				2EFEDF881BE7049A008D9858 /* XWOwnBlog.swift in Sources */,
 				1846E9C81BDE4C49008B2145 /* XWCompassView.swift in Sources */,
 				1846E9C61BDE490C008B2145 /* XWcompassVc.swift in Sources */,
+				2E2AA0F61BEA147D0014E697 /* XWComposeVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

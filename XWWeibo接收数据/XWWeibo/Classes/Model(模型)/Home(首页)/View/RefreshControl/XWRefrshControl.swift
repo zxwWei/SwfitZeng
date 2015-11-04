@@ -31,12 +31,12 @@ class XWRefrshControl: UIRefreshControl {
             
             if frame.origin.y < offsetHeigth && !isUp {
             
-                print("箭头朝上")
+                //print("箭头朝上")
                 isUp = true
                 refreshView.rotationTipViewIcon(isUp)
             }
             if frame.origin.y > offsetHeigth && isUp{
-                print("箭头朝下")
+                //print("箭头朝下")
                 isUp = false
                 refreshView.rotationTipViewIcon(isUp)
             }
@@ -44,10 +44,10 @@ class XWRefrshControl: UIRefreshControl {
     }
     
     
-    // MARK: - 重写下拉刷新方法
+    // MARK: - 重写下拉刷新数据结束时调用的方法
     override func endRefreshing() {
         super.endRefreshing()
-        refreshView.startLoading()
+        refreshView.stopLoading()
     }
     
 
@@ -61,6 +61,7 @@ class XWRefrshControl: UIRefreshControl {
         super.init()
         
         
+        // 添加子控件
         addSubview(refreshView)
         
         // 添加约束
