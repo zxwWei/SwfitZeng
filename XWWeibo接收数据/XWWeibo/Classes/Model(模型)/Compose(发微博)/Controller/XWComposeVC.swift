@@ -27,7 +27,19 @@ class XWComposeVC: UIViewController {
 
     // MARK: - 键盘通知事件
     func keyboardWillChangeFrame(notificition: NSNotification){
-        print("你没")
+        print("notificition\(notificition)")
+        
+        // 获取动画时间 记得转换
+        let duration = notificition.userInfo!["UIKeyboardAnimationDurationUserInfoKey"] as! NSTimeInterval
+        let endframe = notificition.userInfo!["UIKeyboardFrameEndUserInfoKey"]!.CGRectValue
+        
+        bottomConstriant?.constant = -(UIScreen.height() - endframe.origin.y)
+        
+        UIView.animateWithDuration(duration) { () -> Void in
+            
+            // 更新约束
+            self.view.layoutIfNeeded()
+        }
     }
     
     deinit{
@@ -45,6 +57,26 @@ class XWComposeVC: UIViewController {
         setUPTextView()
       
     }
+    
+    // MARK: - 用户一进入变成第一使用者
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        textView.becomeFirstResponder()
+    }
+    
+//    override func viewDidAppear(animated: Bool) {
+//        super.viewDidAppear(animated)
+////        let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 10))
+////        view.backgroundColor = UIColor.redColor()
+////        textView.inputView = view
+//        
+//        // 自定义键盘其实就是给 textView.inputView 赋值
+//        
+//        textView.becomeFirstResponder()
+//    }
+    
+    
     
     // MARK: 设置导航条
     private func setUpNavigation() {
@@ -212,7 +244,7 @@ class XWComposeVC: UIViewController {
             // 设置代理
             textView.delegate = self
         
-            //MARK: - 这样的话不可以隐藏 一直有值　
+            //MARK: - 应该是对placerdoler进行操作
 //          textView.placeholerlabel.text = "分享新鲜事"
             textView.placerdoler = "分享新鲜事..."
             // 设置textView有回弹效果
