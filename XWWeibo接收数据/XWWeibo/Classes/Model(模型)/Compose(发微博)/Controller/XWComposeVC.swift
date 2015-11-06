@@ -27,7 +27,7 @@ class XWComposeVC: UIViewController {
 
     // MARK: - 键盘通知事件
     func keyboardWillChangeFrame(notificition: NSNotification){
-        print("notificition\(notificition)")
+        //print("notificition\(notificition)")
         
         // 获取动画时间 记得转换
         let duration = notificition.userInfo!["UIKeyboardAnimationDurationUserInfoKey"] as! NSTimeInterval

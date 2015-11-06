@@ -60,8 +60,9 @@ class XWTopView: UIView {
     // MARK: - 准备UI
     private func prepareUI () {
         
-        
+        // 分割线
         addSubview(topSeperatorView)
+        
         addSubview(iconView)
         addSubview(userName)
         addSubview(timeLabel)

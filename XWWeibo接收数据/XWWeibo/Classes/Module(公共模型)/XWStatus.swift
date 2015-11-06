@@ -94,6 +94,7 @@ class XWSatus: NSObject {
     /// 缓存行高
     var rowHeight: CGFloat?
     
+/*-------------------------模型转换-----------------------------------*/
     // MARK: - the dictionary transform to model
     init(dict: [String: AnyObject]){
         super.init()
@@ -121,7 +122,7 @@ class XWSatus: NSObject {
         else if key == "retweeted_status" {
                 if let dict = value as? [String: AnyObject]{
                 
-                    // 将转发的微博转成模型
+                    // 将转发的微博转成模型 
                     retweeted_status = XWSatus(dict: dict)
                 }
                 return
