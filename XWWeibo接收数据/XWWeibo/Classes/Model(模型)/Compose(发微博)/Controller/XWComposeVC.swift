@@ -117,7 +117,7 @@ class XWComposeVC: UIViewController {
         
         // 遍历名字数组, 对其背景图片进行赋值
         for dict in itemSettings {
-            
+        
             // 获取图片名字
             let imageName = dict["imageName"]!
             
@@ -160,12 +160,36 @@ class XWComposeVC: UIViewController {
     }
     
     func emoticon() {
-        print("表情")
+        
+        //print("表情")
+        switchkeyboard()
     }
     
     func add() {
         print("加号")
     }
+    
+    //MARK: - 切换键盘的方法
+    func switchkeyboard(){
+        
+//        print("\(textView.inputView)")
+        //键盘先退下
+        textView.resignFirstResponder()
+        
+        // 当为键盘时点击表情按钮切换到表情盘
+        textView.inputView = textView.inputView == nil ? emotionVc.view : nil
+    
+        //TODO: 延时  dispatch
+        [UIView .animateWithDuration(1, animations: { () -> Void in
+            // 再呼出键盘
+            textView.becomeFirstResponder()
+        })]
+        
+        
+     
+    }
+    
+    
     
     // MARK: - 设置标题
     private func setUpTitle() {
@@ -254,6 +278,17 @@ class XWComposeVC: UIViewController {
         
         return textView
     }()
+    
+    /// 设置表情控制器
+    private lazy var emotionVc: XWEmotionVc = {
+    
+        let emotionVc = XWEmotionVc()
+        self.addChildViewController(emotionVc)
+        // 让两个的textView为同一个
+        emotionVc.textView = self.textView
+        return emotionVc
+    }()
+    
 }
 
 extension XWComposeVC: UITextViewDelegate{
