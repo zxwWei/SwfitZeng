@@ -49,7 +49,7 @@ class XWPlacerholderTextView: UITextView {
     }
     
     // MARK: - bug 私有的属性和方法要加@obj    记得将自己也传过来　
-    @objc  private func textDidChange(notificition: NSNotification){
+    func textDidChange(notificition: NSNotification){
         
         // 能到这里来说明是当前这个textView文本改变了
         // 判断文本是否为空: hasText()

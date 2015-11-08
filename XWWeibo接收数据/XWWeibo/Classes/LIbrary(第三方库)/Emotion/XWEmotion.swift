@@ -39,10 +39,10 @@ class XWEmotionPackge: NSObject {
 
     
     // MARK:- 加载包表情包数据 返回表情包模型数组    获取到每个表情包的路径
-    class  func packges() -> [XWEmotionPackge] {
+    private class  func packges() -> [XWEmotionPackge] {
         print("创建")
         // 加载emotion.bundel里面数据
-//        let bundlePath = NSBundle.mainBundle().bundlePath
+        // let bundlePath = NSBundle.mainBundle().bundlePath
         
         // 获取emotion.plist路径 拼接
         let plistPath = (bundlePath as NSString).stringByAppendingPathComponent("emoticons.plist")
@@ -59,14 +59,22 @@ class XWEmotionPackge: NSObject {
         // 创建最近表情包
         let recent = XWEmotionPackge(id: "")
         
-        // 将最近表情包拼接进数组
-        packges.append(recent)
+        
+        // MARK: - recent:[表情包模型: id:Optional(""), group_name_cn:nil, emoticons:nil]
+        // 此时应该实例化表情模型数组
+        recent.emotions = [XWEmotion]()
+        
+        // 添加追加空白按钮和删除按钮 数据:packges:[表情包模型: id:Optional(""), group_name_cn:nil, emoticons:nil]
+        recent.addEmptyEmotion()
         
         // 设置名字
         recent.group_name_cn = "最近"
+        // 将最近表情包拼接进数组
+        packges.append(recent)
         
-        // TODO: 好像没有添加追加空白按钮和删除按钮　
+        //print("packges:\(packges)")
     
+        
         // 遍历 packege数组内容　创建表情包模型数组
         for dict in packageArr {
         
@@ -75,11 +83,12 @@ class XWEmotionPackge: NSObject {
             // 将具体的id赋到表情包属性上  让下面调用的时候 可以直接获得各表情包的具体plist路径
             let packge = XWEmotionPackge(id: id)
             
-            // 让表情包进一步去加载表情模型出来
+            //TODO: maybe 在这里 让表情包进一步去加载表情模型出来
             packge.loadEmotion()
             
             packges.append(packge)
         }
+        //print("packges\(packges)")
         return packges
     }
     
@@ -98,33 +107,12 @@ class XWEmotionPackge: NSObject {
         // 定义接收表情模型数组
         emotions = [XWEmotion]()
         
-//        // 记录现在 是第几个表情
-//        var index = 0
-//        // 获取表情模型 　此时进入了每一个表情包的　plist  [String: AnyObject]  [String: String]
-//        if let emotionArr = infodict["emoticons"] as? [[String: AnyObject]] {
-//        
-//            // 遍历数组 创建模型
-//            for dict in emotionArr {
-//                
-//                emotions?.append(XWEmotion(id: id, dict: dict))
-//                
-//                index ++
-//                  
-                  //index++ a 
-//                if index == 20 {
-//                    emotions?.append(XWEmotion(removeEmotion: true))
-//                    
-//                    // 记得重置为0在重新计算
-//                    index = 0
-//                }
-//                
-//            }
-//        
-//        }
+        // 记录现在 是第几个表情
+        //index ++          //index++
         
         // 记录当前是第几个按钮
         var index = 0
-        // 获取表情模型
+        // 获取表情模型   取得每1个表情然后拼接进去
         if let array = infodict["emoticons"] as? [[String: String]] {
             // 遍历表情数据数组
             for dict in array {
@@ -144,17 +132,20 @@ class XWEmotionPackge: NSObject {
         }
         
         addEmptyEmotion()
-        
-        
+
        // print("emotions\(emotions)")
     }
     
     //MARK:- 添加空按钮和删除按钮
     private func addEmptyEmotion(){
     
+        //print("count\(emotions!.count)")
+        //  let count = emotions!.count % 21 ?? 0
         let count = emotions!.count % 21
-        // 每组有21个 当不满21个时 count>0
-        if count > 0{
+        // count > 0
+        //MARK: bug -  每组有21个 当不满21个时 count>0  emotions!.count == 0 时
+        // count等于0时也要进入
+        if count > 0 || emotions!.count == 0 {
             
             // 遍历count 到20
             for _ in count..<20 {
@@ -172,11 +163,54 @@ class XWEmotionPackge: NSObject {
 // MARK: - 添加最近添加表情进最近表情包
     class func addRecentEmotion(emotion:XWEmotion){
     
-        // 取到最近表情包中的表情数组
+        // 如果是删除按钮，不执行
+        if emotion.removeEmotion{
+            return
+        }
+        
+        // 使用次数增加 times并没有增加
+        emotion.times++
+        //print("emotion:\(emotion)count:\(emotion.times)")
+        
+        //MARK: bug取到最近表情包中的表情数组 这个从packages取出 之前是用 private class func packges()-> [XWEmotionPackge] 这个方法取出来操作的不是同一个对象
         var recentEmotionPackage = packages[0].emotions
         
-        // 往表情数组其中添加表情
-        recentEmotionPackage?.append(emotion)
+        //print("\(recentEmotionPackage)")
+        // 记录最后一个删除按钮
+        let removeBtn = recentEmotionPackage!.removeLast()
+        
+         //判断数组有没有某个表情
+        let contains = recentEmotionPackage!.contains(emotion)
+        
+        //print("contains:\(contains)")
+        // 当数组中没有这个表情的时候才添加
+        if !contains {
+            // 往表情数组其中添加表情 添加一个 后面再删除一个
+            // 直接添加在数组的后面,并没有显示出来.将使用次数多的放在最前面.在 CZEmoticon 添加 time 属性,用于记录使用次数
+            recentEmotionPackage?.append(emotion)
+        }
+    
+        //print("\(packages[0].emotions)")
+        //print("contains\(contains)")
+   
+        
+        // 排序 将使用次数多的放在前面
+        recentEmotionPackage = recentEmotionPackage?.sort({ (e1, e2) -> Bool in
+            
+            return e1.times > e2.times
+        })
+        
+        // 始终删除最后一个 保证一直都是21个，而且最后一个是删除按钮
+        if !contains{
+            recentEmotionPackage!.removeLast()
+        }
+        
+        // 最后将删除按钮添加回去
+        recentEmotionPackage!.append(removeBtn)
+        
+        // 需要重新赋值回去
+        packages[0].emotions = recentEmotionPackage
+         //print("\(packages[0].emotions)")
     }
     
 }
@@ -203,6 +237,10 @@ class XWEmotion: NSObject {
             pngPath = XWEmotionPackge.bundlePath + "/" + id! + "/" + png!
         }
     }
+    
+    /// 记录最近表情使用的次数 times: Int = 0
+    // var times: Int = 0
+    var times = 0
     
     /// 完整的图片路径 = bundle + id + png
     var pngPath: String?

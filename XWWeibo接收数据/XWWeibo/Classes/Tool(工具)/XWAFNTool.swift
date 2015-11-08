@@ -166,7 +166,7 @@ class XWNetworkTool: NSObject {
         
     }
     
-    ///  发送网络请求的方法
+    ///MARK: 获取微博信息  发送网络请求的方法
     func getblogInfo(since_id: Int, max_id: Int,finished: NetWorkFinishedCallBack){
     
         let uslStr = "2/statuses/home_timeline.json"
@@ -218,6 +218,32 @@ class XWNetworkTool: NSObject {
 //    }
 //    
 //
+    
+    // MARK: - 发布微博
+    func sendStatus(status: String,finished: NetWorkFinishedCallBack){
+    
+        let urlStr = "2/statuses/update.json"
+        
+        guard var parmerters = assTokenDict() else{
+            
+            // 没有值的时候进入
+            finished(result: nil, error: XWNetWorkError.emptyToken.error())
+            return
+        }
+        
+        parmerters["status"] = status
+        
+        afnManager.POST(urlStr, parameters: parmerters, success: { (_ , result) -> Void in
+            
+            finished(result: result as? [String: AnyObject], error: nil)
+            
+            }) { (_ , error ) -> Void in
+                
+                finished(result: nil, error: error )
+                
+        }
+    }
+
     
     // MARK: - 封装 GET
     func requestGETGET(URLString: String, parameters: AnyObject?, finished: NetWorkFinishedCallBack){

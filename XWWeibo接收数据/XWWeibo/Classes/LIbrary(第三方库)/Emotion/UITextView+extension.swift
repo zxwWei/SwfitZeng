@@ -44,6 +44,12 @@ extension UITextView {
 //            return
 //        }
 //        
+        // 当是删除按钮时，删除文本
+        if emotion.removeEmotion{
+            deleteBackward()
+        }
+        
+        
         // 当emoji有值的时候 插入
         if let emoji = emotion.emoji{
             
@@ -91,6 +97,13 @@ extension UITextView {
             
             // 因为光标会自动到最后一位 所以需重新设定光标 偏移到光标的后一位
             self.selectedRange = NSRange(location: selectedRange.location + 1 , length: 0)
+            
+            // 目的是是发送按钮能被点击
+            // 主动调用键盘的通知和textView的代理   ? 前面的执行了才执行后面的
+            delegate?.textViewDidChange?(self)
+            
+            // 主动发送通知
+            NSNotificationCenter.defaultCenter().postNotificationName(UITextViewTextDidChangeNotification, object: self)
         }
     }
     

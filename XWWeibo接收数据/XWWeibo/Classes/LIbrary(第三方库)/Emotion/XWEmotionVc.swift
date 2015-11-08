@@ -124,9 +124,9 @@ class XWEmotionVc: UIViewController {
     
     // MARK: - 按钮点击事件  1.考虑名字 2.考虑私有方法是否要加@obj
     // 当tag为0的时候和tabBar的默认值0相冲突，取不到第一个按钮
-    @objc  private func click(btn: UIButton){
+     @objc private func click(btn: UIButton){
 
-        print("\(btn.tag)")
+        //print("\(btn.tag)")
 
         // 获得对应的NSIndexpath 显示在每组的最前面 collectionView里面分为0，1，2，3组
         let path = NSIndexPath(forItem: 0, inSection: btn.tag - baseTag)
@@ -150,14 +150,6 @@ class XWEmotionVc: UIViewController {
         selectBtn?.selected = true
         
     }
-    
-    // MARK:- 向最近表情包中添加表情
-    class func addRecentEmotion(emotion: XWEmotion) {
-        // 获取最近表情包
-        //var recentPackage =
-    
-    }
-    
 
     /// 懒加载
     //  MARK: - 不记得了，必须布局UICollectionViewFlowLayout
@@ -204,26 +196,32 @@ extension XWEmotionVc: UICollectionViewDelegate{
     // 当点击某个cell的时候触发
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        // －－取到点击的某个cell
-        let emotion = XWEmotionPackge.packges()[indexPath.section].emotions![indexPath.item]
+        // －－取到点击的某个cell  packages 从内存中加载 一开始的时候用了方法来加载
+        let emotion = XWEmotionPackge.packages[indexPath.section].emotions![indexPath.item]
         
         // 将表情传入文本
         textView!.insertEmotion(emotion)
         
-        // TODO: 将表情传进去最近表情包
-        XWEmotionPackge.addRecentEmotion(emotion)
-
+        // 将表情传进去最近表情包
+        // 最近表情组里面的不参与排序
+        if indexPath.section != 0 {
+            XWEmotionPackge.addRecentEmotion(emotion)
+        }
+//        // 直接刷新数据，用户体验不好
+//        collectionView.reloadSections(NSIndexSet(index: 0))       
+        
     }
     
     // 监听collectionView停止滚动的时候，获取到当前的cell,并设为高亮
     func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        //print("滑动")
         // 获取正在显示的组
         let indexpath = collectionView.indexPathsForVisibleItems().first
-        let section = indexpath?.section
-        
-        // 取得这个按钮，让其高亮
-        let button = toolBar.viewWithTag(section!) as! UIButton
-        
+        let section = indexpath!.section
+        //print("section\(section)")
+
+//        // 取得这个按钮，让其高亮  现在记录的tag是 section+baseTag
+        let button = toolBar.viewWithTag(section + baseTag) as! UIButton
         switchToHighlight(button)
     }
     

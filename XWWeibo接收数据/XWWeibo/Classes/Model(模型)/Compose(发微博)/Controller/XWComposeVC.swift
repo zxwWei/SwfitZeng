@@ -7,14 +7,20 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class XWComposeVC: UIViewController {
 
-    /**
-    定义toolBar的底部约束
-    */
+    
+    // MARK: - 属性
+    /// 定义toolBar的底部约束
     private var bottomConstriant: NSLayoutConstraint?
     
+    /// 定义微博最大长度
+    private var statusMaxLength = 20
+    
+    
+    // view显示方法
     override func viewDidLoad() {
         super.viewDidLoad()
      
@@ -25,7 +31,7 @@ class XWComposeVC: UIViewController {
         prepareUI()
     }
 
-    // MARK: - 键盘通知事件
+    // 键盘通知事件
     func keyboardWillChangeFrame(notificition: NSNotification){
         //print("notificition\(notificition)")
         
@@ -55,7 +61,8 @@ class XWComposeVC: UIViewController {
         setUpTitle()
         // MARK: - bug 当tabbar约束完成才可以关联与其相关的约束
         setUPTextView()
-      
+        
+        setUpLableTip()
     }
     
     // MARK: - 用户一进入变成第一使用者
@@ -65,20 +72,7 @@ class XWComposeVC: UIViewController {
         textView.becomeFirstResponder()
     }
     
-//    override func viewDidAppear(animated: Bool) {
-//        super.viewDidAppear(animated)
-////        let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 10))
-////        view.backgroundColor = UIColor.redColor()
-////        textView.inputView = view
-//        
-//        // 自定义键盘其实就是给 textView.inputView 赋值
-//        
-//        textView.becomeFirstResponder()
-//    }
-    
-    
-    
-    // MARK: 设置导航条
+    // 设置导航条
     private func setUpNavigation() {
         //  navigationController?. 不是从这开始 // 记得带导航控制条
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "取消", style: UIBarButtonItemStyle.Plain, target: self, action: "backToMain")
@@ -86,10 +80,9 @@ class XWComposeVC: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "发微博", style: UIBarButtonItemStyle.Plain, target: self, action: "sendStatus")
         
         navigationItem.rightBarButtonItem?.enabled = false
-        
     }
 
-    // MARK: - 设置toolBar
+    // 设置toolBar
     private func setUPToolBar(){
         
         // 添加子控件
@@ -113,7 +106,6 @@ class XWComposeVC: UIViewController {
         
         // 创建　items数组
         var items = [UIBarButtonItem]()
-        
         
         // 遍历名字数组, 对其背景图片进行赋值
         for dict in itemSettings {
@@ -145,53 +137,8 @@ class XWComposeVC: UIViewController {
         //  让toolBar自带的items成为此时的items
         toolBar.items = items
     }
-    
-    // MARK: - 按钮点击事件
-    func picture() {
-        print("图片")
-    }
-    
-    func trend() {
-        print("#")
-    }
-    
-    func mention() {
-        print("@")
-    }
-    
-    func emoticon() {
-        
-        //print("表情")
-        switchkeyboard()
-    }
-    
-    func add() {
-        print("加号")
-    }
-    
-    //MARK: - 切换键盘的方法
-    func switchkeyboard(){
-        
-//        print("\(textView.inputView)")
-        //键盘先退下
-        textView.resignFirstResponder()
-        
-        // 当为键盘时点击表情按钮切换到表情盘
-        textView.inputView = textView.inputView == nil ? emotionVc.view : nil
-    
-        //TODO: 延时  dispatch
-        [UIView .animateWithDuration(1, animations: { () -> Void in
-            // 再呼出键盘
-            textView.becomeFirstResponder()
-        })]
-        
-        
-     
-    }
-    
-    
-    
-    // MARK: - 设置标题
+
+    // 设置标题
     private func setUpTitle() {
         
         let prefix = "发微博"
@@ -226,10 +173,10 @@ class XWComposeVC: UIViewController {
         else{
             navigationItem.title = prefix
         }
-    
     }
     
-    // MARK: - 设置文本
+    
+    // 设置文本
     private func setUPTextView() {
         
         view.addSubview(textView)
@@ -241,12 +188,119 @@ class XWComposeVC: UIViewController {
         
     }
     
+    
+    // MARK: - 按钮点击事件
+    func picture() {
+        print("图片")
+    }
+    
+    func trend() {
+        print("#")
+    }
+    
+    func mention() {
+        print("@")
+    }
+    
+    func emoticon() {
+        
+        //print("表情")
+        switchkeyboard()
+    }
+    
+    func add() {
+        print("加号")
+    }
+    
+    // 发微博
+    func sendStatus(){
+        sendStatu()
+    }
+    
+    // 切换键盘的方法
+    func switchkeyboard(){
+        //键盘先退下
+        textView.resignFirstResponder()
+        //MARK: 延时  dispatch  (dispatch_time(DISPATCH_TIME_NOW, (Int64)(250 * NSEC_PER_SEC)) 复制这段才对
+        [UIView .animateWithDuration(1, animations: { () -> Void in
+            // 再呼出键盘
+            textView.becomeFirstResponder()
+        })]
+        
+        // 当为键盘时点击表情按钮切换到表情盘
+        self.textView.inputView = self.textView.inputView == nil ? self.emotionVc.view : nil
+        
+        //TODO: 键盘和表情键盘切换出现错误
+        // 再呼出键盘
+        //        self.textView.becomeFirstResponder()
+        //
+        //        print("\(textView.inputView)")
+        //        //键盘先退下
+        //        textView.resignFirstResponder()
+        //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (Int64)(250 * NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
+        //            // 当为键盘时点击表情按钮切换到表情盘
+        //            self.textView.inputView = self.textView.inputView == nil ? self.emotionVc.view : nil
+        //
+        //            // 再呼出键盘
+        //            self.textView.becomeFirstResponder()
+        //        })
+        //
+        ////        // 再呼出键盘
+        ////        self.textView.becomeFirstResponder()
+    }
+    
+    // 设置文字长度提示按钮
+    func setUpLableTip(){
+        view.addSubview(lengthTipLabel)
+        
+        // MARK: bug :必需实现
+        lengthTipLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        // 在storyboard上试试
+        view.addConstraint(NSLayoutConstraint(item: lengthTipLabel, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: toolBar, attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -8))
+        view.addConstraint(NSLayoutConstraint(item: lengthTipLabel, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Right, multiplier: 1, constant: -8))
+        
+    }
+    
+    // 发微博
+    func sendStatu(){
+        // 获取文本
+        let status = textView.emoticonText()
+        
+        // 判断微博文本
+        if statusMaxLength - status.characters.count < 0 {
+            
+            SVProgressHUD.showErrorWithStatus("微博长度超过20", maskType: SVProgressHUDMaskType.Black)
+            return
+        }
+        
+        // 显示正在发送
+        SVProgressHUD.showSuccessWithStatus("正在发布微博", maskType: SVProgressHUDMaskType.Black)
+        // 发送网络请求
+        XWNetworkTool.shareInstance.sendStatus(status) { (result, error) -> () in
+            
+            if error != nil{
+                SVProgressHUD.showErrorWithStatus("网络不给力", maskType: SVProgressHUDMaskType.Black)
+                return
+            }
+            //print("\(result)")
+            // 回到主界面
+            self.backToMain()
+        }
+    }
+    
     // 返回主界面 @objc让oc语法也可以访问
     @objc private func backToMain() {
         
+        // 关闭键盘
+        textView.resignFirstResponder()
+        
+        // 关闭sv提示
+        SVProgressHUD.dismiss()
         dismissViewControllerAnimated(true, completion: nil)
         
     }
+    
  
     // MARK: 懒加载
      /// 懒加载toolBar
@@ -289,8 +343,20 @@ class XWComposeVC: UIViewController {
         return emotionVc
     }()
     
+    /// 设置微博文本长度提示
+    private lazy var lengthTipLabel: UILabel = {
+        let label = UILabel(fonsize: 12, textColor: UIColor.grayColor())
+        
+        // 转换成字符串
+        label.text = String(self.statusMaxLength)
+        //label.backgroundColor = UIColor.greenColor()
+        
+        return label
+    }()
 }
 
+
+// MARK: textView代理方法
 extension XWComposeVC: UITextViewDelegate{
 
     /// textView文本改变的时候调用
@@ -298,8 +364,18 @@ extension XWComposeVC: UITextViewDelegate{
         // 当textView 有文本的时候,发送按钮可用,
         // 当textView 没有文本的时候,发送按钮不可用
         navigationItem.rightBarButtonItem?.enabled = textView.hasText()
+        
+        
+        // 获取剩余长度  textView.emoticonText().characters.count)
+        let length = statusMaxLength - textView.emoticonText().characters.count
+        lengthTipLabel.text = String( statusMaxLength - textView.emoticonText().characters.count)
+        lengthTipLabel.textColor = length < 0 ? UIColor.redColor() : UIColor.grayColor()
+        
+        if length < 0 {
+        
+            navigationItem.rightBarButtonItem?.enabled = false
+        }
     }
-
 }
 
 

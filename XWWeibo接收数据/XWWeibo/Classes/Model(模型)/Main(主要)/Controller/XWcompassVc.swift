@@ -64,6 +64,7 @@ class XWcompassVc: UITableViewController{
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "登陆", style: UIBarButtonItemStyle.Plain, target: self, action: "vistorWillLogin")
          //vistorView.backgroundColor = UIColor.whiteColor()
     }
+    
 
 // MARK: - 监听通知
     func didEnterBackground(){
@@ -87,6 +88,5 @@ extension XWcompassVc: XWCompassViewDelegate {
         let loginVc = XWOauthVC()
         // 记得添加导航条
         presentViewController(UINavigationController(rootViewController: loginVc), animated: true, completion: nil)
-        
     }
 }
