@@ -11,6 +11,10 @@
 import UIKit
 import SDWebImage
 
+let XWPictureViewCellNSNotification = "XWPictureViewCellNSNotification"
+let XWPictureViewCellSelectedPictureUrlKey = "XWPictureViewCellSelectedPictureUrlKey"
+let XWPictureViewCellSelectedIndexPathKey = "XWPictureViewCellSelectedIndexPathKey"
+
 class XWPictureView: UICollectionView {
     
     // MARK: - 微博模型  相当于重写setter
@@ -118,6 +122,7 @@ class XWPictureView: UICollectionView {
     
         // 数据源代理
         dataSource = self
+        delegate = self
         
         // 注册cell
         registerClass(XWPictureViewCell.self, forCellWithReuseIdentifier: "cell")
@@ -126,20 +131,10 @@ class XWPictureView: UICollectionView {
     }
 
     
-    // - 准备UI
-//    private func prepareUI() {
-//        
-//        layout.minimumInteritemSpacing = 10
-//        layout.minimumLineSpacing = 10
-//        layout.itemSize = CGSize(width: 90, height: 90)
-//        
-//        
-//    }
-    
 }
 
-// MARK: 数据源方法 延伸
-extension XWPictureView: UICollectionViewDataSource {
+// MARK: 数据源方法 延伸 代理延伸
+extension XWPictureView: UICollectionViewDataSource , UICollectionViewDelegate{
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -158,10 +153,22 @@ extension XWPictureView: UICollectionViewDataSource {
         return cell
     }
     
+    // 当点击cell的时候调用
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        // 记录index sttus是从cell处传过来的
+        let userInfo: [String: AnyObject] = [
+        
+            XWPictureViewCellSelectedIndexPathKey  : indexPath.item,
+            //MARK: - bug 注意属性间的转换∫
+            XWPictureViewCellSelectedPictureUrlKey : status!.realLargePictureUrls!
+        ]
+        
+        // 发送通知 将通知发送到homeVC
+        NSNotificationCenter.defaultCenter().postNotificationName(XWPictureViewCellNSNotification, object: self, userInfo: userInfo)
+    }
     
 }
-
-
 
 
 // MARK: - 自定义cell 用来显示图片
@@ -174,6 +181,10 @@ class XWPictureViewCell: UICollectionViewCell{
         
             // 不要用错方法
             picture.sd_setImageWithURL(imgUrl)
+            
+            let gif = (imgUrl!.absoluteString as NSString ) .pathExtension.lowercaseString == "gif"
+            
+            gifImageView.hidden = !gif
         }
     }
     
@@ -193,10 +204,19 @@ class XWPictureViewCell: UICollectionViewCell{
     //  MARK : - 准备UI
     func prepareUI() {
         contentView.addSubview(picture)
+        contentView.addSubview(gifImageView)
+        
+        gifImageView.translatesAutoresizingMaskIntoConstraints = false
         
         // 添加约束 充满子控件
         picture.ff_Fill(contentView)
     
+        let views = ["gif":gifImageView]
+        contentView.addConstraints(NSLayoutConstraint .constraintsWithVisualFormat("H:[gif]-4-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+         contentView.addConstraints(NSLayoutConstraint .constraintsWithVisualFormat("V:[gif]-4-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: views))
+        
+//         gifImageView.ff_AlignInner(type: ff_AlignType.BottomRight, referView: contentView, size: nil)
+        
     }
     
     // MARK: - 懒加载
@@ -209,6 +229,6 @@ class XWPictureViewCell: UICollectionViewCell{
         return imageView
     }()
     
-
-    
+    /// gif图标
+    private lazy var gifImageView: UIImageView = UIImageView(image: UIImage(named: "timeline_image_gif"))
 }

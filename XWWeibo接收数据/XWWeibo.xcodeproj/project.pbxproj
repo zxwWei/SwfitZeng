@@ -35,6 +35,7 @@
 		2E1708C21BE6323500752B0C /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E1708C11BE6323500752B0C /* UIButton+Extension.swift */; settings = {ASSET_TAGS = (); }; };
 		2E2AA0F61BEA147D0014E697 /* XWComposeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2AA0F51BEA147D0014E697 /* XWComposeVC.swift */; settings = {ASSET_TAGS = (); }; };
 		2E2AA0FE1BEA40E80014E697 /* XWPlacerholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2AA0FD1BEA40E80014E697 /* XWPlacerholderTextView.swift */; settings = {ASSET_TAGS = (); }; };
+		2E7687951BEF90910013A568 /* XWPictureBrownVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7687941BEF90900013A568 /* XWPictureBrownVC.swift */; settings = {ASSET_TAGS = (); }; };
 		2E8E3E951BE8D26A00843B98 /* XWRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E8E3E941BE8D26A00843B98 /* XWRefreshView.xib */; settings = {ASSET_TAGS = (); }; };
 		2E8E3E971BE8D30700843B98 /* XWRefrshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8E3E961BE8D30700843B98 /* XWRefrshControl.swift */; settings = {ASSET_TAGS = (); }; };
 		2EBA1DA51BE4F777003E1123 /* XWStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA1DA41BE4F777003E1123 /* XWStatus.swift */; settings = {ASSET_TAGS = (); }; };
@@ -45,6 +46,8 @@
 		2EBA1DB61BE50E62003E1123 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA1DB51BE50E62003E1123 /* UILabel+Extension.swift */; settings = {ASSET_TAGS = (); }; };
 		2EFEDF881BE7049A008D9858 /* XWOwnBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFEDF871BE7049A008D9858 /* XWOwnBlog.swift */; settings = {ASSET_TAGS = (); }; };
 		2EFEDF8A1BE704A9008D9858 /* XWForwardBlog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFEDF891BE704A9008D9858 /* XWForwardBlog.swift */; settings = {ASSET_TAGS = (); }; };
+		2EFF254F1BF0BD3800CCB48E /* XWPhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF254E1BF0BD3800CCB48E /* XWPhotoSelectorCell.swift */; settings = {ASSET_TAGS = (); }; };
+		2EFF25531BF0D73600CCB48E /* UIImageView+transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EFF25521BF0D73600CCB48E /* UIImageView+transform.swift */; settings = {ASSET_TAGS = (); }; };
 		BC98E88AD7A3787820C9680A /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54008FB4FE193B99973D951F /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +82,7 @@
 		2E1708C11BE6323500752B0C /* UIButton+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
 		2E2AA0F51BEA147D0014E697 /* XWComposeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWComposeVC.swift; sourceTree = "<group>"; };
 		2E2AA0FD1BEA40E80014E697 /* XWPlacerholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWPlacerholderTextView.swift; sourceTree = "<group>"; };
+		2E7687941BEF90900013A568 /* XWPictureBrownVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWPictureBrownVC.swift; sourceTree = "<group>"; };
 		2E8E3E941BE8D26A00843B98 /* XWRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XWRefreshView.xib; sourceTree = "<group>"; };
 		2E8E3E961BE8D30700843B98 /* XWRefrshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWRefrshControl.swift; sourceTree = "<group>"; };
 		2EBA1DA41BE4F777003E1123 /* XWStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWStatus.swift; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 		2EBA1DB51BE50E62003E1123 /* UILabel+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		2EFEDF871BE7049A008D9858 /* XWOwnBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWOwnBlog.swift; sourceTree = "<group>"; };
 		2EFEDF891BE704A9008D9858 /* XWForwardBlog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWForwardBlog.swift; sourceTree = "<group>"; };
+		2EFF254E1BF0BD3800CCB48E /* XWPhotoSelectorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWPhotoSelectorCell.swift; sourceTree = "<group>"; };
+		2EFF25521BF0D73600CCB48E /* UIImageView+transform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+transform.swift"; sourceTree = "<group>"; };
 		54008FB4FE193B99973D951F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		94C5B82C7CDB65B65A79DD5F /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C576B7DAE453E404FD7E82D2 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -343,6 +349,7 @@
 				18898FEF1BE35F8700FCB250 /* UIBarButtonItem+Extension.swift */,
 				18898FE91BE34EB600FCB250 /* UIColor+Extension.swift */,
 				2E1708BB1BE6250E00752B0C /* UIScreen+Extension.swift */,
+				2EFF25521BF0D73600CCB48E /* UIImageView+transform.swift */,
 			);
 			path = "Extension(延伸)";
 			sourceTree = "<group>";
@@ -350,6 +357,7 @@
 		18CB0FC71BE24F15009A5162 /* LIbrary(第三方库) */ = {
 			isa = PBXGroup;
 			children = (
+				2E7687931BEF83BA0013A568 /* PhotoBrown(图片浏览器) */,
 				2E0B514B1BECE5120000C3B2 /* Emotion */,
 				2EBA1DA81BE504ED003E1123 /* UIView+AutoLayout.swift */,
 			);
@@ -426,6 +434,15 @@
 				2E2AA0FD1BEA40E80014E697 /* XWPlacerholderTextView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		2E7687931BEF83BA0013A568 /* PhotoBrown(图片浏览器) */ = {
+			isa = PBXGroup;
+			children = (
+				2E7687941BEF90900013A568 /* XWPictureBrownVC.swift */,
+				2EFF254E1BF0BD3800CCB48E /* XWPhotoSelectorCell.swift */,
+			);
+			path = "PhotoBrown(图片浏览器)";
 			sourceTree = "<group>";
 		};
 		2E8E3E931BE8D25500843B98 /* RefreshControl */ = {
@@ -617,8 +634,10 @@
 				2E1708C01BE6321000752B0C /* XWBottomView.swift in Sources */,
 				2EBA1DB41BE50783003E1123 /* XWTopView.swift in Sources */,
 				2E0B51551BECE5120000C3B2 /* XWEmotion.swift in Sources */,
+				2EFF254F1BF0BD3800CCB48E /* XWPhotoSelectorCell.swift in Sources */,
 				1846E9C41BDE4202008B2145 /* XWMainTabBarController.swift in Sources */,
 				2E1708B71BE61F6B00752B0C /* XWNewFeatureVC.swift in Sources */,
+				2E7687951BEF90910013A568 /* XWPictureBrownVC.swift in Sources */,
 				2E1708C21BE6323500752B0C /* UIButton+Extension.swift in Sources */,
 				2E8E3E971BE8D30700843B98 /* XWRefrshControl.swift in Sources */,
 				1846E9C01BDE3D1C008B2145 /* XWDiscoverTableVC.swift in Sources */,
@@ -631,6 +650,7 @@
 				2EBA1DB21BE5076B003E1123 /* XWStatuesCell.swift in Sources */,
 				1847A5711BE0E3C7005036E0 /* XWOauthVC.swift in Sources */,
 				2E1708BA1BE61FAB00752B0C /* XWPictureView.swift in Sources */,
+				2EFF25531BF0D73600CCB48E /* UIImageView+transform.swift in Sources */,
 				2E2AA0FE1BEA40E80014E697 /* XWPlacerholderTextView.swift in Sources */,
 				2EBA1DA51BE4F777003E1123 /* XWStatus.swift in Sources */,
 				2EBA1DB61BE50E62003E1123 /* UILabel+Extension.swift in Sources */,

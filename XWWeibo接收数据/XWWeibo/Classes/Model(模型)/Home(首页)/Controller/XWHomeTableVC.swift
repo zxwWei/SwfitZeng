@@ -50,13 +50,39 @@ class XWHomeTableVC: XWcompassVc {
         // 代码触发 UIControlEvents.ValueChanged 事件
         refreshControl?.sendActionsForControlEvents(UIControlEvents.ValueChanged)
         
-        
         setupNavigaiotnBar()
         
         prepareUI()
-    
 
+        // 注册配图通知
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didSelectedPicture:", name: XWPictureViewCellNSNotification, object: nil)
 }
+    
+    // TODO:执行 接收到图片url
+    func didSelectedPicture(notification:NSNotification){
+        // 看清楚输出的参数
+        print("notification\(notification)")
+        
+        guard let urls = notification.userInfo!["XWPictureViewCellSelectedPictureUrlKey"] as? [NSURL] else {
+        
+            return
+        }
+        
+        guard let selectIndex = notification.userInfo!["XWPictureViewCellSelectedIndexPathKey"] as? Int else{
+        
+            return
+        }
+        
+        // 弹出照片浏览器
+        presentViewController(XWPictureBrownVC(urls: urls, selectIndex: selectIndex), animated: true, completion: nil)
+        
+    }
+    
+    // 注销通知
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
     //MARK: - 加载数据  用户从模型加载数据
     func loadData() {
         if (!XWUserAccount.userLogin()){
@@ -64,8 +90,8 @@ class XWHomeTableVC: XWcompassVc {
         }
         print("加载微博数据")
         // 默认是下拉刷新, 取得id最大的微博，如果没有数据，默认是20条微博
-//        var since_id = statues?.first?.id ?? 0
-//        var max_id = 0
+        // var since_id = statues?.first?.id ?? 0
+        // var max_id = 0
         // 这样的话值没有改变过
         // MARK: - bug 后面要使用和判断 since_id
         var since_id = statues?.first?.id ?? 0
@@ -154,7 +180,6 @@ class XWHomeTableVC: XWcompassVc {
     }
     
     
-    
     // MARK: 准备UI
     private func prepareUI() {
         
@@ -166,7 +191,6 @@ class XWHomeTableVC: XWcompassVc {
     
     }
     
-
      // MARK: - setupNavigaiotnBar
      private func setupNavigaiotnBar() {
         navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendsearch")
@@ -247,8 +271,6 @@ class XWHomeTableVC: XWcompassVc {
         
         return indicator
         }()
-    
-    
     
 }
 

@@ -47,6 +47,9 @@ class XWSatus: NSObject {
             // 创建url数组
             pictureUrlS = [NSURL]()
             
+            /// 创建大图URL数组
+            largePictureUrls = [NSURL]()
+            
             for dict in pic_urls! {
                 
                 // 当是这个字典的时候
@@ -54,6 +57,12 @@ class XWSatus: NSObject {
                     
                     // 拼接数组
                     pictureUrlS?.append(NSURL(string: urlStr)!)
+                    
+                    // 转成大图URL字符串
+                    let largeUrlStr = urlStr.stringByReplacingOccurrencesOfString("thumbnail", withString: "large")
+                    
+                    // 拼接数组
+                    largePictureUrls?.append(NSURL(string: largeUrlStr)!)
                 }
             
             }
@@ -63,6 +72,9 @@ class XWSatus: NSObject {
     
     /// 微博配图 url数组
     var pictureUrlS: [NSURL]?
+    
+    /// 微博配图 返回的大图数组
+    var largePictureUrls: [NSURL]?
     
     
     /// 计算型属性 如果是转发的返回原创微博的图片 ，转发的返回转发的图片
@@ -74,6 +86,14 @@ class XWSatus: NSObject {
             return retweeted_status == nil ? pictureUrlS : retweeted_status!.pictureUrlS
         }
     
+    }
+    
+    /// 发的返回原创微博的大图片 ，转发的返回转发的大图片
+    var realLargePictureUrls: [NSURL]?{
+        
+        get {
+            return retweeted_status == nil ? largePictureUrls : retweeted_status!.largePictureUrls
+        }
     }
     
     
