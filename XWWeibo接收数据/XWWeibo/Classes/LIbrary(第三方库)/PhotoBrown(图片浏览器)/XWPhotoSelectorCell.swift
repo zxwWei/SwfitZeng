@@ -30,6 +30,7 @@ class XWPhotoSelectorCell: UICollectionViewCell {
             
             self.indicator.startAnimating()
             
+            // TODO: 点击进入第一张照片时出错
             // 下载图片
             self.imageView.sd_setImageWithURL(iamgeUrl) { (image , error , _ , _ ) -> Void in
                 
@@ -78,8 +79,8 @@ class XWPhotoSelectorCell: UICollectionViewCell {
     // MARK:- 准备UI
     private func prepareUI(){
         
-        scrollView.addSubview(imageView)
         contentView.addSubview(scrollView)
+        scrollView.addSubview(imageView)
         scrollView.addSubview(indicator)
         
         // 添加约束

@@ -31,6 +31,8 @@ class XWHomeTableVC: XWcompassVc {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("测试")
+        
         // 将下拉的菊花放在底部块   // 添加footView,上拉加载更多数据的菊花
         tableView.tableFooterView = pullUpView
         
@@ -58,10 +60,10 @@ class XWHomeTableVC: XWcompassVc {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "didSelectedPicture:", name: XWPictureViewCellNSNotification, object: nil)
 }
     
-    // TODO:执行 接收到图片url
+    // 执行 接收到图片url 点击图片后接收到通知
     func didSelectedPicture(notification:NSNotification){
-        // 看清楚输出的参数
-        print("notification\(notification)")
+        //MARK: -bug 看清楚输出的参数
+        //print("notification\(notification)")
         
         guard let urls = notification.userInfo!["XWPictureViewCellSelectedPictureUrlKey"] as? [NSURL] else {
         
@@ -73,8 +75,17 @@ class XWHomeTableVC: XWcompassVc {
             return
         }
         
+        let controller = XWPictureBrownVC(urls: urls, selectIndex: selectIndex)
+        
+        // 设置modal控制器的转场代理
+        //controller.transitioningDelegate = controller
+        
+        // TODO: 转场动画 设置modal控制器的转场样式
+        //controller.modalPresentationStyle = UIModalPresentationStyle.Custom
+        
+        
         // 弹出照片浏览器
-        presentViewController(XWPictureBrownVC(urls: urls, selectIndex: selectIndex), animated: true, completion: nil)
+        presentViewController(controller, animated: true, completion: nil)
         
     }
     
@@ -196,7 +207,9 @@ class XWHomeTableVC: XWcompassVc {
         navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "navigationbar_friendsearch")
         navigationItem.rightBarButtonItem = UIBarButtonItem(imageName: "navigationbar_pop")
         
-        title = XWUserAccount.loadAccount()?.name
+        // TODO: 底部为什么也是名字
+        navigationItem.title = XWUserAccount.loadAccount()?.name
+//        title = XWUserAccount.loadAccount()?.name
     }
     
     

@@ -36,6 +36,8 @@
 		2E2AA0F61BEA147D0014E697 /* XWComposeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2AA0F51BEA147D0014E697 /* XWComposeVC.swift */; settings = {ASSET_TAGS = (); }; };
 		2E2AA0FE1BEA40E80014E697 /* XWPlacerholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2AA0FD1BEA40E80014E697 /* XWPlacerholderTextView.swift */; settings = {ASSET_TAGS = (); }; };
 		2E7687951BEF90910013A568 /* XWPictureBrownVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E7687941BEF90900013A568 /* XWPictureBrownVC.swift */; settings = {ASSET_TAGS = (); }; };
+		2E82D9781BF1751400351F8A /* XWPhotoBrownModalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82D9771BF1751400351F8A /* XWPhotoBrownModalAnimation.swift */; settings = {ASSET_TAGS = (); }; };
+		2E82D97A1BF1752700351F8A /* XWPhotoDismissAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82D9791BF1752700351F8A /* XWPhotoDismissAnimation.swift */; settings = {ASSET_TAGS = (); }; };
 		2E8E3E951BE8D26A00843B98 /* XWRefreshView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E8E3E941BE8D26A00843B98 /* XWRefreshView.xib */; settings = {ASSET_TAGS = (); }; };
 		2E8E3E971BE8D30700843B98 /* XWRefrshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8E3E961BE8D30700843B98 /* XWRefrshControl.swift */; settings = {ASSET_TAGS = (); }; };
 		2EBA1DA51BE4F777003E1123 /* XWStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EBA1DA41BE4F777003E1123 /* XWStatus.swift */; settings = {ASSET_TAGS = (); }; };
@@ -83,6 +85,8 @@
 		2E2AA0F51BEA147D0014E697 /* XWComposeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWComposeVC.swift; sourceTree = "<group>"; };
 		2E2AA0FD1BEA40E80014E697 /* XWPlacerholderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWPlacerholderTextView.swift; sourceTree = "<group>"; };
 		2E7687941BEF90900013A568 /* XWPictureBrownVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWPictureBrownVC.swift; sourceTree = "<group>"; };
+		2E82D9771BF1751400351F8A /* XWPhotoBrownModalAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWPhotoBrownModalAnimation.swift; sourceTree = "<group>"; };
+		2E82D9791BF1752700351F8A /* XWPhotoDismissAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWPhotoDismissAnimation.swift; sourceTree = "<group>"; };
 		2E8E3E941BE8D26A00843B98 /* XWRefreshView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = XWRefreshView.xib; sourceTree = "<group>"; };
 		2E8E3E961BE8D30700843B98 /* XWRefrshControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWRefrshControl.swift; sourceTree = "<group>"; };
 		2EBA1DA41BE4F777003E1123 /* XWStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XWStatus.swift; sourceTree = "<group>"; };
@@ -439,10 +443,20 @@
 		2E7687931BEF83BA0013A568 /* PhotoBrown(图片浏览器) */ = {
 			isa = PBXGroup;
 			children = (
+				2E82D9761BF174B500351F8A /* Animation(动画) */,
 				2E7687941BEF90900013A568 /* XWPictureBrownVC.swift */,
 				2EFF254E1BF0BD3800CCB48E /* XWPhotoSelectorCell.swift */,
 			);
 			path = "PhotoBrown(图片浏览器)";
+			sourceTree = "<group>";
+		};
+		2E82D9761BF174B500351F8A /* Animation(动画) */ = {
+			isa = PBXGroup;
+			children = (
+				2E82D9771BF1751400351F8A /* XWPhotoBrownModalAnimation.swift */,
+				2E82D9791BF1752700351F8A /* XWPhotoDismissAnimation.swift */,
+			);
+			path = "Animation(动画)";
 			sourceTree = "<group>";
 		};
 		2E8E3E931BE8D25500843B98 /* RefreshControl */ = {
@@ -634,10 +648,12 @@
 				2E1708C01BE6321000752B0C /* XWBottomView.swift in Sources */,
 				2EBA1DB41BE50783003E1123 /* XWTopView.swift in Sources */,
 				2E0B51551BECE5120000C3B2 /* XWEmotion.swift in Sources */,
+				2E82D97A1BF1752700351F8A /* XWPhotoDismissAnimation.swift in Sources */,
 				2EFF254F1BF0BD3800CCB48E /* XWPhotoSelectorCell.swift in Sources */,
 				1846E9C41BDE4202008B2145 /* XWMainTabBarController.swift in Sources */,
 				2E1708B71BE61F6B00752B0C /* XWNewFeatureVC.swift in Sources */,
 				2E7687951BEF90910013A568 /* XWPictureBrownVC.swift in Sources */,
+				2E82D9781BF1751400351F8A /* XWPhotoBrownModalAnimation.swift in Sources */,
 				2E1708C21BE6323500752B0C /* UIButton+Extension.swift in Sources */,
 				2E8E3E971BE8D30700843B98 /* XWRefrshControl.swift in Sources */,
 				1846E9C01BDE3D1C008B2145 /* XWDiscoverTableVC.swift in Sources */,

@@ -184,9 +184,6 @@ class XWPictureBrownVC: UIViewController {
     
 }
 
-
-
-
 // MARK: - 延伸 代理数据源
 extension XWPictureBrownVC: UICollectionViewDataSource,UICollectionViewDelegate{
 
@@ -209,12 +206,24 @@ extension XWPictureBrownVC: UICollectionViewDataSource,UICollectionViewDelegate{
         
         return cell
     }
-    
-
 }
 
-
-
+// MARK: - 转场动画的代理延伸 
+//extension XWPictureBrownVC: UIViewControllerTransitioningDelegate{
+//    
+//    // 返回控制modal对象的方法
+//    func animationControllerForPresentedController(presented: UIViewController, presentingController presenting: UIViewController, sourceController source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        
+//        return XWPhotoBrownModalAnimation()
+//    }
+//    
+//    // 返回控制dimiss对象的方法
+//    func animationControllerForDismissedController(dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+//        
+//        return XWPhotoDismissAnimation()
+//    }
+//
+//}
 
 
 
